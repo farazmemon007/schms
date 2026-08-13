@@ -99,7 +99,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="state_id">State: <span class="text-danger">*</span></label>
+                            <label for="state_id">Province: <span class="text-danger">*</span></label>
                             <select onchange="getLGA(this.value)" required data-placeholder="Choose.." class="select-search form-control" name="state_id" id="state_id">
                                 <option value=""></option>
                                 @foreach($states as $st)
@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="lga_id">LGA: <span class="text-danger">*</span></label>
+                            <label for="lga_id">City: <span class="text-danger">*</span></label>
                             <select required data-placeholder="Select State First" class="select-search form-control" name="lga_id" id="lga_id">
                                 <option value="{{ $user->lga_id ?? '' }}">{{ $user->lga->name ?? '' }}</option>
                             </select>

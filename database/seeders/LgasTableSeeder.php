@@ -2,27 +2,178 @@
 namespace Database\Seeders;
 
 use App\Models\Lga;
+use App\Models\State;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
 class LgasTableSeeder extends Seeder
 {
-
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('lgas')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        $state_id = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37
+        // State IDs: 1=Punjab, 2=Sindh, 3=KPK, 4=Balochistan, 5=AJK, 6=GB, 7=Islamabad
+        $cities = [
+
+            // ===== 1. PUNJAB =====
+            ['state_id' => 1, 'name' => 'Lahore'],
+            ['state_id' => 1, 'name' => 'Faisalabad'],
+            ['state_id' => 1, 'name' => 'Rawalpindi'],
+            ['state_id' => 1, 'name' => 'Gujranwala'],
+            ['state_id' => 1, 'name' => 'Multan'],
+            ['state_id' => 1, 'name' => 'Sialkot'],
+            ['state_id' => 1, 'name' => 'Bahawalpur'],
+            ['state_id' => 1, 'name' => 'Sargodha'],
+            ['state_id' => 1, 'name' => 'Sheikhupura'],
+            ['state_id' => 1, 'name' => 'Jhang'],
+            ['state_id' => 1, 'name' => 'Rahim Yar Khan'],
+            ['state_id' => 1, 'name' => 'Gujrat'],
+            ['state_id' => 1, 'name' => 'Kasur'],
+            ['state_id' => 1, 'name' => 'Okara'],
+            ['state_id' => 1, 'name' => 'Sahiwal'],
+            ['state_id' => 1, 'name' => 'Wah Cantt'],
+            ['state_id' => 1, 'name' => 'Dera Ghazi Khan'],
+            ['state_id' => 1, 'name' => 'Mianwali'],
+            ['state_id' => 1, 'name' => 'Jhelum'],
+            ['state_id' => 1, 'name' => 'Attock'],
+            ['state_id' => 1, 'name' => 'Chakwal'],
+            ['state_id' => 1, 'name' => 'Khanewal'],
+            ['state_id' => 1, 'name' => 'Hafizabad'],
+            ['state_id' => 1, 'name' => 'Chiniot'],
+            ['state_id' => 1, 'name' => 'Pakpattan'],
+            ['state_id' => 1, 'name' => 'Muzaffargarh'],
+            ['state_id' => 1, 'name' => 'Lodhran'],
+            ['state_id' => 1, 'name' => 'Vehari'],
+            ['state_id' => 1, 'name' => 'Narowal'],
+            ['state_id' => 1, 'name' => 'Mandi Bahauddin'],
+            ['state_id' => 1, 'name' => 'Nankana Sahib'],
+            ['state_id' => 1, 'name' => 'Toba Tek Singh'],
+            ['state_id' => 1, 'name' => 'Bahawalnagar'],
+            ['state_id' => 1, 'name' => 'Layyah'],
+            ['state_id' => 1, 'name' => 'Khushab'],
+            ['state_id' => 1, 'name' => 'Bhakkar'],
+            ['state_id' => 1, 'name' => 'Rajanpur'],
+
+            // ===== 2. SINDH =====
+            ['state_id' => 2, 'name' => 'Karachi'],
+            ['state_id' => 2, 'name' => 'Hyderabad'],
+            ['state_id' => 2, 'name' => 'Sukkur'],
+            ['state_id' => 2, 'name' => 'Larkana'],
+            ['state_id' => 2, 'name' => 'Nawabshah'],
+            ['state_id' => 2, 'name' => 'Mirpur Khas'],
+            ['state_id' => 2, 'name' => 'Shaheed Benazirabad'],
+            ['state_id' => 2, 'name' => 'Jacobabad'],
+            ['state_id' => 2, 'name' => 'Shikarpur'],
+            ['state_id' => 2, 'name' => 'Khairpur'],
+            ['state_id' => 2, 'name' => 'Dadu'],
+            ['state_id' => 2, 'name' => 'Sanghar'],
+            ['state_id' => 2, 'name' => 'Badin'],
+            ['state_id' => 2, 'name' => 'Tharparkar'],
+            ['state_id' => 2, 'name' => 'Umerkot'],
+            ['state_id' => 2, 'name' => 'Thatta'],
+            ['state_id' => 2, 'name' => 'Matiari'],
+            ['state_id' => 2, 'name' => 'Jamshoro'],
+            ['state_id' => 2, 'name' => 'Ghotki'],
+            ['state_id' => 2, 'name' => 'Kashmore'],
+            ['state_id' => 2, 'name' => 'Tando Allahyar'],
+            ['state_id' => 2, 'name' => 'Tando Muhammad Khan'],
+            ['state_id' => 2, 'name' => 'Qambar Shahdadkot'],
+
+            // ===== 3. KHYBER PAKHTUNKHWA (KPK) =====
+            ['state_id' => 3, 'name' => 'Peshawar'],
+            ['state_id' => 3, 'name' => 'Mardan'],
+            ['state_id' => 3, 'name' => 'Mingora (Swat)'],
+            ['state_id' => 3, 'name' => 'Abbottabad'],
+            ['state_id' => 3, 'name' => 'Mansehra'],
+            ['state_id' => 3, 'name' => 'Kohat'],
+            ['state_id' => 3, 'name' => 'Nowshera'],
+            ['state_id' => 3, 'name' => 'Charsadda'],
+            ['state_id' => 3, 'name' => 'Bannu'],
+            ['state_id' => 3, 'name' => 'Dera Ismail Khan'],
+            ['state_id' => 3, 'name' => 'Swabi'],
+            ['state_id' => 3, 'name' => 'Haripur'],
+            ['state_id' => 3, 'name' => 'Battagram'],
+            ['state_id' => 3, 'name' => 'Hangu'],
+            ['state_id' => 3, 'name' => 'Lakki Marwat'],
+            ['state_id' => 3, 'name' => 'Malakand'],
+            ['state_id' => 3, 'name' => 'Chitral'],
+            ['state_id' => 3, 'name' => 'Dir Upper'],
+            ['state_id' => 3, 'name' => 'Dir Lower'],
+            ['state_id' => 3, 'name' => 'Tank'],
+            ['state_id' => 3, 'name' => 'Buner'],
+            ['state_id' => 3, 'name' => 'Shangla'],
+            ['state_id' => 3, 'name' => 'Torghar'],
+            ['state_id' => 3, 'name' => 'Kohistan'],
+
+            // ===== 4. BALOCHISTAN =====
+            ['state_id' => 4, 'name' => 'Quetta'],
+            ['state_id' => 4, 'name' => 'Turbat'],
+            ['state_id' => 4, 'name' => 'Khuzdar'],
+            ['state_id' => 4, 'name' => 'Gwadar'],
+            ['state_id' => 4, 'name' => 'Hub'],
+            ['state_id' => 4, 'name' => 'Chaman'],
+            ['state_id' => 4, 'name' => 'Zhob'],
+            ['state_id' => 4, 'name' => 'Kharan'],
+            ['state_id' => 4, 'name' => 'Sibi'],
+            ['state_id' => 4, 'name' => 'Loralai'],
+            ['state_id' => 4, 'name' => 'Mastung'],
+            ['state_id' => 4, 'name' => 'Kalat'],
+            ['state_id' => 4, 'name' => 'Nushki'],
+            ['state_id' => 4, 'name' => 'Panjgur'],
+            ['state_id' => 4, 'name' => 'Washuk'],
+            ['state_id' => 4, 'name' => 'Lasbela'],
+            ['state_id' => 4, 'name' => 'Awaran'],
+            ['state_id' => 4, 'name' => 'Dera Bugti'],
+            ['state_id' => 4, 'name' => 'Kech'],
+            ['state_id' => 4, 'name' => 'Musakhel'],
+
+            // ===== 5. AZAD JAMMU & KASHMIR (AJK) =====
+            ['state_id' => 5, 'name' => 'Muzaffarabad'],
+            ['state_id' => 5, 'name' => 'Mirpur'],
+            ['state_id' => 5, 'name' => 'Rawalakot'],
+            ['state_id' => 5, 'name' => 'Bagh'],
+            ['state_id' => 5, 'name' => 'Kotli'],
+            ['state_id' => 5, 'name' => 'Bhimber'],
+            ['state_id' => 5, 'name' => 'Pallandri'],
+            ['state_id' => 5, 'name' => 'Haveli'],
+            ['state_id' => 5, 'name' => 'Neelum'],
+            ['state_id' => 5, 'name' => 'Hattian Bala'],
+
+            // ===== 6. GILGIT-BALTISTAN (GB) =====
+            ['state_id' => 6, 'name' => 'Gilgit'],
+            ['state_id' => 6, 'name' => 'Skardu'],
+            ['state_id' => 6, 'name' => 'Hunza'],
+            ['state_id' => 6, 'name' => 'Ghanche'],
+            ['state_id' => 6, 'name' => 'Ghizer'],
+            ['state_id' => 6, 'name' => 'Astore'],
+            ['state_id' => 6, 'name' => 'Diamer'],
+            ['state_id' => 6, 'name' => 'Shigar'],
+            ['state_id' => 6, 'name' => 'Kharmang'],
+            ['state_id' => 6, 'name' => 'Nagar'],
+
+            // ===== 7. ISLAMABAD CAPITAL TERRITORY =====
+            ['state_id' => 7, 'name' => 'Islamabad (F-6)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-6)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-7)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-8)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-9)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-10)'],
+            ['state_id' => 7, 'name' => 'Islamabad (G-11)'],
+            ['state_id' => 7, 'name' => 'Islamabad (I-8)'],
+            ['state_id' => 7, 'name' => 'Islamabad (I-9)'],
+            ['state_id' => 7, 'name' => 'Islamabad (I-10)'],
+            ['state_id' => 7, 'name' => 'Blue Area'],
+            ['state_id' => 7, 'name' => 'Rawat'],
+            ['state_id' => 7, 'name' => 'Kahuta'],
+            ['state_id' => 7, 'name' => 'Taxila'],
+
         ];
 
-        $lgas = ["Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala Ngwa North", "Isiala Ngwa South", "Isuikwuato", "Obi Ngwa", "Ohafia", "Osisioma", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu Nneochi", "Demsa", "Fufure", "Ganye", "Gayuk", "Gombi", "Grie", "Hong", "Jada", "Larmurde", "Madagali", "Maiha", "Mayo Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South", "Abak", "Eastern Obolo", "Eket", "Esit Eket", "Essien Udim", "Etim Ekpo", "Etinan", "Ibeno", "Ibesikpo Asutan", "Ibiono-Ibom", "Ika", "Ikono", "Ikot Abasi", "Ikot Ekpene", "Ini", "Itu", "Mbo", "Mkpat-Enin", "Nsit-Atai", "Nsit-Ibom", "Nsit-Ubium", "Obot Akara", "Okobo", "Onna", "Oron", "Oruk Anam", "Udung-Uko", "Ukanafun", "Uruan", "Urue-Offong/Oruko", "Uyo", "Aguata", "Anambra East", "Anambra West", "Anaocha", "Awka North", "Awka South", "Ayamelum", "Dunukofia", "Ekwusigo", "Idemili North", "Idemili South", "Ihiala", "Njikoka", "Nnewi North", "Nnewi South", "Ogbaru", "Onitsha North", "Onitsha South", "Orumba North", "Orumba South", "Oyi", "Alkaleri", "Bauchi", "Bogoro", "Damban", "Darazo", "Dass", "Gamawa", "Ganjuwa", "Giade", "Itas/Gadau", "Jama'are", "Katagum", "Kirfi", "Misau", "Ningi", "Shira", "Tafawa Balewa", "Toro", "Warji", "Zaki", "Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa", "Agatu", "Apa", "Ado", "Buruku", "Gboko", "Guma", "Gwer East", "Gwer West", "Katsina-Ala", "Konshisha", "Kwande", "Logo", "Makurdi", "Obi", "Ogbadibo", "Ohimini", "Oju", "Okpokwu", "Oturkpo", "Tarka", "Ukum", "Ushongo", "Vandeikya", "Abadam", "Askira/Uba", "Bama", "Bayo", "Biu", "Chibok", "Damboa", "Dikwa", "Gubio", "Guzamala", "Gwoza", "Hawul", "Jere", "Kaga", "Kala/Balge", "Konduga", "Kukawa", "Kwaya Kusar", "Mafa", "Magumeri", "Maiduguri", "Marte", "Mobbar", "Monguno", "Ngala", "Nganzai", "Shani", "Abi", "Akamkpa", "Akpabuyo", "Bakassi", "Bekwarra", "Biase", "Boki", "Calabar Municipal", "Calabar South", "Etung", "Ikom", "Obanliku", "Obubra", "Obudu", "Odukpani", "Ogoja", "Yakuur", "Yala", "Aniocha North", "Aniocha South", "Bomadi", "Burutu", "Ethiope East", "Ethiope West", "Ika North East", "Ika South", "Isoko North", "Isoko South", "Ndokwa East", "Ndokwa West", "Okpe", "Oshimili North", "Oshimili South", "Patani", "Sapele, Delta", "Udu", "Ughelli North", "Ughelli South", "Ukwuani", "Uvwie", "Warri North", "Warri South", "Warri South West", "Abakaliki", "Afikpo North", "Afikpo South", "Ebonyi", "Ezza North", "Ezza South", "Ikwo", "Ishielu", "Ivo", "Izzi", "Ohaozara", "Ohaukwu", "Onicha", "Akoko-Edo", "Egor", "Esan Central", "Esan North-East", "Esan South-East", "Esan West", "Etsako Central", "Etsako East", "Etsako West", "Igueben", "Ikpoba Okha", "Orhionmwon", "Oredo", "Ovia North-East", "Ovia South-West", "Owan East", "Owan West", "Uhunmwonde", "Ado Ekiti", "Efon", "Ekiti East", "Ekiti South-West", "Ekiti West", "Emure", "Gbonyin", "Ido Osi", "Ijero", "Ikere", "Ikole", "Ilejemeje", "Irepodun/Ifelodun", "Ise/Orun", "Moba", "Oye", "Aninri", "Awgu", "Enugu East", "Enugu North", "Enugu South", "Ezeagu", "Igbo Etiti", "Igbo Eze North", "Igbo Eze South", "Isi Uzo", "Nkanu East", "Nkanu West", "Nsukka", "Oji River", "Udenu", "Udi", "Uzo Uwani", "Abaji", "Bwari", "Gwagwalada", "Kuje", "Kwali", "Municipal Area Council", "Akko", "Balanga", "Billiri", "Dukku", "Funakaye", "Gombe", "Kaltungo", "Kwami", "Nafada", "Shongom", "Yamaltu/Deba", "Aboh Mbaise", "Ahiazu Mbaise", "Ehime Mbano", "Ezinihitte", "Ideato North", "Ideato South", "Ihitte/Uboma", "Ikeduru", "Isiala Mbano", "Isu", "Mbaitoli", "Ngor Okpala", "Njaba", "Nkwerre", "Nwangele", "Obowo", "Oguta", "Ohaji/Egbema", "Okigwe", "Orlu", "Orsu", "Oru East", "Oru West", "Owerri Municipal", "Owerri North", "Owerri West", "Unuimo", "Auyo", "Babura", "Biriniwa", "Birnin Kudu", "Buji", "Dutse", "Gagarawa", "Garki", "Gumel", "Guri", "Gwaram", "Gwiwa", "Hadejia", "Jahun", "Kafin Hausa", "Kazaure", "Kiri Kasama", "Kiyawa", "Kaugama", "Maigatari", "Malam Madori", "Miga", "Ringim", "Roni", "Sule Tankarkar", "Taura", "Yankwashi", "Birnin Gwari", "Chikun", "Giwa", "Igabi", "Ikara", "Jaba", "Jema'a", "Kachia", "Kaduna North", "Kaduna South", "Kagarko", "Kajuru", "Kaura", "Kauru", "Kubau", "Kudan", "Lere", "Makarfi", "Sabon Gari", "Sanga", "Soba", "Zangon Kataf", "Zaria", "Ajingi", "Albasu", "Bagwai", "Bebeji", "Bichi", "Bunkure", "Dala", "Dambatta", "Dawakin Kudu", "Dawakin Tofa", "Doguwa", "Fagge", "Gabasawa", "Garko", "Garun Mallam", "Gaya", "Gezawa", "Gwale", "Gwarzo", "Kabo", "Kano Municipal", "Karaye", "Kibiya", "Kiru", "Kumbotso", "Kunchi", "Kura", "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rano", "Rimin Gado", "Rogo", "Shanono", "Sumaila", "Takai", "Tarauni", "Tofa", "Tsanyawa", "Tudun Wada", "Ungogo", "Warawa", "Wudil", "Bakori", "Batagarawa", "Batsari", "Baure", "Bindawa", "Charanchi", "Dandume", "Danja", "Dan Musa", "Daura", "Dutsi", "Dutsin Ma", "Faskari", "Funtua", "Ingawa", "Jibia", "Kafur", "Kaita", "Kankara", "Kankia", "Katsina", "Kurfi", "Kusada", "Mai'Adua", "Malumfashi", "Mani", "Mashi", "Matazu", "Musawa", "Rimi", "Sabuwa", "Safana", "Sandamu", "Zango", "Aleiro", "Arewa Dandi", "Argungu", "Augie", "Bagudo", "Birnin Kebbi", "Bunza", "Dandi", "Fakai", "Gwandu", "Jega", "Kalgo", "Koko/Besse", "Maiyama", "Ngaski", "Sakaba", "Shanga", "Suru", "Wasagu/Danko", "Yauri", "Zuru", "Adavi", "Ajaokuta", "Ankpa", "Bassa", "Dekina", "Ibaji", "Idah", "Igalamela Odolu", "Ijumu", "Kabba/Bunu", "Kogi", "Lokoja", "Mopa Muro", "Ofu", "Ogori/Magongo", "Okehi", "Okene", "Olamaboro", "Omala", "Yagba East", "Yagba West", "Asa", "Baruten", "Edu", "Ekiti, Kwara State", "Ifelodun", "Ilorin East", "Ilorin South", "Ilorin West", "Irepodun", "Isin", "Kaiama", "Moro", "Offa", "Oke Ero", "Oyun", "Pategi", "Agege", "Ajeromi-Ifelodun", "Alimosho", "Amuwo-Odofin", "Apapa", "Badagry", "Epe", "Eti Osa", "Ibeju-Lekki", "Ifako-Ijaiye", "Ikeja", "Ikorodu", "Kosofe", "Lagos Island", "Lagos Mainland", "Mushin", "Ojo", "Oshodi-Isolo", "Shomolu", "Surulere, Lagos State", "Akwanga", "Awe", "Doma", "Karu", "Keana", "Keffi", "Kokona", "Lafia", "Nasarawa", "Nasarawa Egon", "Obi", "Toto", "Wamba", "Agaie", "Agwara", "Bida", "Borgu", "Bosso", "Chanchaga", "Edati", "Gbako", "Gurara", "Katcha", "Kontagora", "Lapai", "Lavun", "Magama", "Mariga", "Mashegu", "Mokwa", "Moya", "Paikoro", "Rafi", "Rijau", "Shiroro", "Suleja", "Tafa", "Wushishi", "Abeokuta North", "Abeokuta South", "Ado-Odo/Ota", "Egbado North", "Egbado South", "Ewekoro", "Ifo", "Ijebu East", "Ijebu North", "Ijebu North East", "Ijebu Ode", "Ikenne", "Imeko Afon", "Ipokia", "Obafemi Owode", "Odeda", "Odogbolu", "Ogun Waterside", "Remo North", "Shagamu", "Akoko North-East", "Akoko North-West", "Akoko South-West", "Akoko South-East", "Akure North", "Akure South", "Ese Odo", "Idanre", "Ifedore", "Ilaje", "Ile Oluji/Okeigbo", "Irele", "Odigbo", "Okitipupa", "Ondo East", "Ondo West", "Ose", "Owo", "Atakunmosa East", "Atakunmosa West", "Aiyedaade", "Aiyedire", "Boluwaduro", "Boripe", "Ede North", "Ede South", "Ife Central", "Ife East", "Ife North", "Ife South", "Egbedore", "Ejigbo", "Ifedayo", "Ifelodun", "Ila", "Ilesa East", "Ilesa West", "Irepodun", "Irewole", "Isokan", "Iwo", "Obokun", "Odo Otin", "Ola Oluwa", "Olorunda", "Oriade", "Orolu", "Osogbo", "Afijio", "Akinyele", "Atiba", "Atisbo", "Egbeda", "Ibadan North", "Ibadan North-East", "Ibadan North-West", "Ibadan South-East", "Ibadan South-West", "Ibarapa Central", "Ibarapa East", "Ibarapa North", "Ido", "Irepo", "Iseyin", "Itesiwaju", "Iwajowa", "Kajola", "Lagelu", "Ogbomosho North", "Ogbomosho South", "Ogo Oluwa", "Olorunsogo", "Oluyole", "Ona Ara", "Orelope", "Ori Ire", "Oyo", "Oyo East", "Saki East", "Saki West", "Surulere, Oyo State", "Bokkos", "Barkin Ladi", "Bassa", "Jos East", "Jos North", "Jos South", "Kanam", "Kanke", "Langtang South", "Langtang North", "Mangu", "Mikang", "Pankshin", "Qua'an Pan", "Riyom", "Shendam", "Wase", "Abua/Odual", "Ahoada East", "Ahoada West", "Akuku-Toru", "Andoni", "Asari-Toru", "Bonny", "Degema", "Eleme", "Emuoha", "Etche", "Gokana", "Ikwerre", "Khana", "Obio/Akpor", "Ogba/Egbema/Ndoni", "Ogu/Bolo", "Okrika", "Omuma", "Opobo/Nkoro", "Oyigbo", "Port Harcourt", "Tai", "Binji", "Bodinga", "Dange Shuni", "Gada", "Goronyo", "Gudu", "Gwadabawa", "Illela", "Isa", "Kebbe", "Kware", "Rabah", "Sabon Birni", "Shagari", "Silame", "Sokoto North", "Sokoto South", "Tambuwal", "Tangaza", "Tureta", "Wamako", "Wurno", "Yabo", "Ardo Kola", "Bali", "Donga", "Gashaka", "Gassol", "Ibi", "Jalingo", "Karim Lamido", "Kumi", "Lau", "Sardauna", "Takum", "Ussa", "Wukari", "Yorro", "Zing", "Bade", "Bursari", "Damaturu", "Fika", "Fune", "Geidam", "Gujba", "Gulani", "Jakusko", "Karasuwa", "Machina", "Nangere", "Nguru", "Potiskum", "Tarmuwa", "Yunusari", "Yusufari", "Anka", "Bakura", "Birnin Magaji/Kiyaw", "Bukkuyum", "Bungudu", "Gummi", "Gusau", "Kaura Namoda", "Maradun", "Maru", "Shinkafi", "Talata Mafara", "Chafe", "Zurmi",
-        ];
-
-        for($i=0; $i<count($lgas); $i++){
-            Lga::create(['state_id' => $state_id[$i], 'name' => $lgas[$i]]);
+        foreach ($cities as $city) {
+            Lga::create(['state_id' => $city['state_id'], 'name' => $city['name']]);
         }
     }
 

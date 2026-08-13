@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class StatesTableSeeder extends Seeder
 {
-
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -15,13 +14,20 @@ class StatesTableSeeder extends Seeder
         DB::table('states')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
+        // Pakistan ke Provinces / Territories
         $states = [
-            'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT', 'Gombe', 'Imo', 'Jigawa','Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara',
+            'Punjab',                          // 1
+            'Sindh',                           // 2
+            'Khyber Pakhtunkhwa (KPK)',        // 3
+            'Balochistan',                     // 4
+            'Azad Jammu & Kashmir (AJK)',      // 5
+            'Gilgit-Baltistan (GB)',           // 6
+            'Islamabad Capital Territory',     // 7
         ];
 
         foreach ($states as $state) {
             State::create(['name' => $state]);
         }
     }
-
 }
+
