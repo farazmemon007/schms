@@ -8,6 +8,7 @@ use App\Models\Nationality;
 use App\Models\StaffRecord;
 use App\Models\State;
 use App\Models\StudentRecord;
+use App\Helpers\Qs;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,4 +65,28 @@ class User extends Authenticatable
     {
         return $this->hasMany(StaffRecord::class);
     }
+
+    public function getPhotoAttribute($value)
+    {
+        if (!$value) {
+            return Qs::getDefaultUserImage();
+        }
+
+        if (str_contains($value, 'global_assets/images/user.png')) {
+            return Qs::getDefaultUserImage();
+        }
+
+        if (str_contains($value, 'storage/uploads/')) {
+            $path = strstr($value, 'storage/uploads/');
+            return asset($path);
+        }
+
+        if (str_contains($value, 'uploads/')) {
+            $path = strstr($value, 'uploads/');
+            return asset('storage/' . $path);
+        }
+
+        return $value;
+    }
 }
+
