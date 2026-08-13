@@ -183,6 +183,26 @@
         bal < 1 ? $('#'+form_id).fadeOut('slow').remove() : '';
     });
 
+    // File Size Validation Listener (Instant Alert on File Select)
+    $(document).on('change', 'input[type=file][name=photo]', function() {
+        var file = this.files[0];
+        if (file) {
+            var maxSize = 2 * 1024 * 1024; // 2MB in bytes
+            if (file.size > maxSize) {
+                var sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                var errMsg = 'Selected photo size (' + sizeMB + ' MB) exceeds the maximum allowed limit of 2MB! Please select a smaller photo.';
+                displayAjaxErr([errMsg]);
+                $(this).val(''); // Reset file input
+                if ($.fn.uniform) {
+                    $.uniform.update($(this)); // Update Uniform plugin UI if initialized
+                }
+                return false;
+            } else {
+                hideAjaxAlert();
+            }
+        }
+    });
+
     $('form.ajax-store').on('submit', function(ev){
         ev.preventDefault();
         submitForm($(this), 'store');
@@ -212,6 +232,20 @@
     function submitForm(form, formType){
         var btn = form.find('button[type=submit]');
         disableBtn(btn);
+
+        // Pre-check file size before submitting
+        var fileInput = form.find('input[type=file][name=photo]')[0];
+        if (fileInput && fileInput.files && fileInput.files[0]) {
+            var file = fileInput.files[0];
+            if (file.size > 2 * 1024 * 1024) {
+                var sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                var errMsg = 'Selected photo size (' + sizeMB + ' MB) exceeds the 2MB limit! Upload canceled.';
+                displayAjaxErr([errMsg]);
+                enableBtn(btn);
+                return false;
+            }
+        }
+
         var ajaxOptions = {
             url:form.attr('action'),
             type:'POST',
@@ -233,16 +267,21 @@
             return resp;
         });
         req.fail(function(e){
-            if (e.status == 422){
+            if (e.status == 422 && e.responseJSON && e.responseJSON.errors){
                 var errors = e.responseJSON.errors;
                 displayAjaxErr(errors);
+            } else if (e.status == 413) {
+                displayAjaxErr(['File size is too large for the server. Maximum allowed size is 2MB.']);
+            } else if (e.status == 419) {
+                displayAjaxErr(['Page expired or upload size limit exceeded. Please refresh and select a photo under 2MB.']);
+            } else if (e.status == 500) {
+                displayAjaxErr([e.status + ' ' + e.statusText + ' Please Check for Duplicate entry or Contact School Administrator/IT Personnel']);
+            } else if (e.status == 404) {
+                displayAjaxErr([e.status + ' ' + e.statusText + ' - Requested Resource or Record Not Found']);
+            } else {
+                var msg = (e.responseJSON && e.responseJSON.message) ? e.responseJSON.message : (e.statusText || 'An error occurred during submission.');
+                displayAjaxErr([msg]);
             }
-           if(e.status == 500){
-               displayAjaxErr([e.status + ' ' + e.statusText + ' Please Check for Duplicate entry or Contact School Administrator/IT Personnel'])
-           }
-            if(e.status == 404){
-               displayAjaxErr([e.status + ' ' + e.statusText + ' - Requested Resource or Record Not Found'])
-           }
             enableBtn(btn);
             return e.status;
         });
@@ -261,7 +300,13 @@
     function displayAjaxErr(errors){
         $('#ajax-alert').show().html(' <div class="alert alert-danger border-0 alert-dismissible" id="ajax-msg"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
         $.each(errors, function(k, v){
-            $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> '+ v +'</span><br/>');
+            if (Array.isArray(v)) {
+                $.each(v, function(i, val){
+                    $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> '+ val +'</span><br/>');
+                });
+            } else {
+                $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> '+ v +'</span><br/>');
+            }
         });
         scrollTo('body');
     }
@@ -280,6 +325,7 @@
         form.find('.select, .select-search').val([]).select2({ placeholder: 'Select...'});
         form[0].reset();
     }
+
 
 
 
