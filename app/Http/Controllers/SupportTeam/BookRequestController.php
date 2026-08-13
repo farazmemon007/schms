@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SupportTeam;
 
-use App\BookRequest;
+use App\Http\Controllers\Controller;
+use App\Models\BookRequest;
 use Illuminate\Http\Request;
 
 class BookRequestController extends Controller
