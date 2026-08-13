@@ -16,14 +16,14 @@ class SettingsTableSeeder extends Seeder
         DB::table('settings')->delete();
 
         $data = [
-            ['type' => 'current_session', 'description' => '2018-2019'],
-            ['type' => 'system_title', 'description' => 'CJIA'],
-            ['type' => 'system_name', 'description' => 'CJ INSPIRED ACADEMY'],
-            ['type' => 'term_ends', 'description' => '7/10/2018'],
-            ['type' => 'term_begins', 'description' => '7/10/2018'],
-            ['type' => 'phone', 'description' => '0123456789'],
-            ['type' => 'address', 'description' => '18B North Central Park, Behind Central Square Tourist Center'],
-            ['type' => 'system_email', 'description' => 'cjacademy@cj.com'],
+            ['type' => 'current_session', 'description' => '2025-2026'],
+            ['type' => 'system_title', 'description' => 'GBPS'],
+            ['type' => 'system_name', 'description' => 'GBPS Urdu Phullei'],
+            ['type' => 'term_ends', 'description' => '31/3/2026'],
+            ['type' => 'term_begins', 'description' => '1/4/2025'],
+            ['type' => 'phone', 'description' => '0300-0000000'],
+            ['type' => 'address', 'description' => 'Phullei, Punjab, Pakistan'],
+            ['type' => 'system_email', 'description' => 'info@gbpsphullei.edu.pk'],
             ['type' => 'alt_email', 'description' => ''],
             ['type' => 'email_host', 'description' => ''],
             ['type' => 'email_pass', 'description' => ''],

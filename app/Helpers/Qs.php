@@ -109,9 +109,15 @@ class Qs
 
     public static function decodeHash($str, $toString = true)
     {
+        if (is_numeric($str)) {
+            return $str;
+        }
         $date = date('dMY').'CJ';
         $hash = new Hashids($date, 14);
         $decoded = $hash->decode($str);
+        if (empty($decoded)) {
+            return $str;
+        }
         return $toString ? implode(',', $decoded) : $decoded;
     }
 
@@ -286,6 +292,26 @@ class Qs
     public static function findTeacherSubjects($teacher_id)
     {
         return Subject::where('teacher_id', $teacher_id)->with('my_class')->get();
+    }
+
+    public static function getAssignedClasses()
+    {
+        if (self::userIsTeamSA()) {
+            return \App\Models\MyClass::orderBy('name')->get();
+        }
+
+        if (self::userIsTeacher()) {
+            return \App\Models\Subject::where('teacher_id', Auth::user()->id)
+                ->with('my_class')
+                ->get()
+                ->pluck('my_class')
+                ->filter()
+                ->unique('id')
+                ->sortBy('name')
+                ->values();
+        }
+
+        return collect();
     }
 
     public static function findStudentRecord($user_id)

@@ -13,20 +13,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(BloodGroupsTableSeeder::class);
-        $this->call(GradesTableSeeder::class);
-        $this->call(DormsTableSeeder::class);
-        $this->call(ClassTypesTableSeeder::class);
-        $this->call(UserTypesTableSeeder::class);
-        $this->call(MyClassesTableSeeder::class);
-        $this->call(NationalitiesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
-        $this->call(LgasTableSeeder::class);
-        $this->call(SettingsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(SubjectsTableSeeder::class);
-        $this->call(SectionsTableSeeder::class);
-        $this->call(StudentRecordsTableSeeder::class);
-        $this->call(SkillsTableSeeder::class);
+        // ===== ZARURI SEEDERS (System in ke bagair nahi chalta) =====
+        $this->call(UserTypesTableSeeder::class);   // User roles (admin, teacher, etc.)
+        $this->call(SettingsTableSeeder::class);    // System settings
+        $this->call(UsersTableSeeder::class);       // Sirf admin accounts
+        $this->call(BloodGroupsTableSeeder::class); // Blood groups dropdown
+        $this->call(NationalitiesTableSeeder::class); // Nationality dropdown
+        $this->call(GradesTableSeeder::class);      // Grading system (A,B,C,D,E,F)
+
+        // ===== HATAYI GYI SEEDERS (Dummy data - aap khud add karain) =====
+        // ClassTypesTableSeeder   - Class types (Nursery, Primary, etc.)
+        // MyClassesTableSeeder    - Classes
+        // SectionsTableSeeder     - Sections
+        // SubjectsTableSeeder     - Subjects
+        // SkillsTableSeeder       - Skills
+        // StudentRecordsTableSeeder - Student records
+        // DormsTableSeeder        - Dormitories
+        // StatesTableSeeder       - States
+        // LgasTableSeeder         - LGAs
     }
 }

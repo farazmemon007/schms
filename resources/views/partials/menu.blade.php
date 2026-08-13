@@ -108,7 +108,7 @@
                             <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'nav-item-expanded' : '' }}">
                                 <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'active' : '' }}">Student Information</a>
                                 <ul class="nav nav-group-sub">
-                                    @foreach(App\Models\MyClass::orderBy('name')->get() as $c)
+                                    @foreach(Qs::getAssignedClasses() as $c)
                                         <li class="nav-item"><a href="{{ route('students.list', $c->id) }}" class="nav-link ">{{ $c->name }}</a></li>
                                     @endforeach
                                 </ul>
@@ -211,6 +211,50 @@
 
 
                 {{--End Exam--}}
+
+                {{-- Scheme of Studies / Planner --}}
+                @if(Qs::userIsTeamSAT())
+                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['planners.index', 'planners.create', 'planners.edit', 'planners.show', 'planners.select_class', 'planners.admin', 'planners.review', 'planners.consolidated']) ? 'nav-item-expanded nav-item-open' : '' }}">
+                        <a href="#" class="nav-link"><i class="icon-notebook"></i> <span>Scheme of Studies</span></a>
+
+                        <ul class="nav nav-group-sub" data-submenu-title="Scheme of Studies">
+                            {{-- My Planners --}}
+                            <li class="nav-item">
+                                <a href="{{ route('planners.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['planners.index']) ? 'active' : '' }}">My Planners</a>
+                            </li>
+
+                            {{-- Create Planner - Class Selection --}}
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['planners.select_class', 'planners.create']) ? 'nav-item-expanded' : '' }}">
+                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['planners.select_class', 'planners.create']) ? 'active' : '' }}">Create Planner</a>
+                                <ul class="nav nav-group-sub">
+                                    @foreach(Qs::getAssignedClasses() as $mc)
+                                        <li class="nav-item">
+                                            <a href="{{ route('planners.select_class', $mc->id) }}" class="nav-link">{{ $mc->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            {{-- Consolidated Master View --}}
+                            <li class="nav-item">
+                                <a href="{{ route('planners.consolidated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['planners.consolidated']) ? 'active' : '' }}">Consolidated View</a>
+                            </li>
+
+                            {{-- Admin: Review Planners --}}
+                            @if(Qs::userIsTeamSA())
+                                <li class="nav-item">
+                                    <a href="{{ route('planners.admin') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['planners.admin', 'planners.review']) ? 'active' : '' }}">
+                                        Review Planners
+                                        @php $pendingCount = \App\Models\Planner::where('status', 'pending')->count(); @endphp
+                                        @if($pendingCount > 0)
+                                            <span class="badge badge-warning badge-pill ml-auto">{{ $pendingCount }}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
                 @include('pages.'.Qs::getUserType().'.menu')
 

@@ -16,8 +16,8 @@
                         <div class="card-body">
                             <div class="text-center mb-3">
                                 <i class="icon-people icon-2x text-warning-400 border-warning-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
-                                <h5 class="mb-0">Login to your account</h5>
-                                <span class="d-block text-muted">Your credentials</span>
+                                <h5 class="mb-0">GBPS Urdu Phullei</h5>
+                                <span class="d-block text-muted">Sign in to your account</span>
                             </div>
 
                                 @if ($errors->any())
@@ -51,10 +51,6 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button>
                             </div>
-
-                           {{-- <div class="form-group">
-                                <a href="#" class="btn btn-light btn-block"><i class="icon-home"></i> Back to Home</a>
-                            </div>--}}
 
 
                         </div>

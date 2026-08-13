@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@dashboard')->name('home');
     Route::get('/home', 'HomeController@dashboard')->name('home');
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    Route::get('/dashboard/switch-view/{role}', 'HomeController@switch_dashboard_view')->name('dashboard.switch_view');
 
     Route::group(['prefix' => 'my_account'], function() {
         Route::get('/', 'MyAccountController@edit_profile')->name('my_account');
@@ -144,6 +145,30 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('exams', 'ExamController');
         Route::resource('dorms', 'DormController');
         Route::resource('payments', 'PaymentController');
+
+        /*************** Planners / Scheme of Studies *****************/
+        Route::group(['prefix' => 'planners'], function(){
+            // Custom fixed paths FIRST
+            Route::get('admin/list', 'PlannerController@adminIndex')->name('planners.admin')->middleware('teamSA');
+            Route::get('consolidated', 'PlannerController@consolidated')->name('planners.consolidated')->middleware('teamSAT');
+            Route::get('select-class/{class_id}', 'PlannerController@selectClass')->name('planners.select_class')->middleware('teamSAT');
+            Route::get('create/{class_id}/{subject_id}', 'PlannerController@create')->name('planners.create')->middleware('teamSAT');
+
+            // Action routes on specific planner ID
+            Route::get('{id}/review', 'PlannerController@review')->name('planners.review')->middleware('teamSA');
+            Route::put('{id}/approve', 'PlannerController@approve')->name('planners.approve')->middleware('teamSA');
+            Route::put('{id}/reject', 'PlannerController@reject')->name('planners.reject')->middleware('teamSA');
+            Route::get('{id}/edit', 'PlannerController@edit')->name('planners.edit')->middleware('teamSAT');
+            Route::get('{id}/print', 'PlannerController@print')->name('planners.print')->middleware('teamSAT');
+            Route::put('{id}/submit', 'PlannerController@submit')->name('planners.submit')->middleware('teamSAT');
+
+            // Base Resource routes
+            Route::get('/', 'PlannerController@index')->name('planners.index')->middleware('teamSAT');
+            Route::post('/', 'PlannerController@store')->name('planners.store')->middleware('teamSAT');
+            Route::get('{id}', 'PlannerController@show')->name('planners.show')->middleware('teamSAT');
+            Route::put('{id}', 'PlannerController@update')->name('planners.update')->middleware('teamSAT');
+            Route::delete('{id}', 'PlannerController@destroy')->name('planners.destroy')->middleware('teamSAT');
+        });
 
     });
 
